@@ -22,7 +22,7 @@ RoomParameterSchema.static("getParameter", function (id, callback) {
                 from: "room_parameters_values",
                 localField: "_id",
                 foreignField: "pid",
-                as: "room_model"
+                as: "parameter_values"
             }
         }
     ];
