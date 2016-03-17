@@ -1,6 +1,5 @@
 var mongoose = require('mongoose');
 var database = require('../service/database');
-var roomInstance = require('../models/RoomInstance');
 
 var Schema = mongoose.Schema;
 
