@@ -1,0 +1,21 @@
+{
+  "name": "nodetest",
+  "version": "1.0.0",
+  "description": "test aplikacija",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongodb": "^2.1.7",
+    "mongoose": "^4.4.6"
+  },
+  "devDependencies": {
+    "light-server": "^1.1.5",
+    "typings": "^0.7.3"
+  }
+}
