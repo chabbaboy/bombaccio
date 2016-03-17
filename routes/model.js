@@ -1,13 +1,16 @@
 var express = require('express');
-var roomConfig = require('../models/roomConfig');
+
+var RoomModel = require('../models/RoomModel');
 
 module.exports = function () {
 
     var router = express.Router();
 
-    router.get('/config/:user', function (req, res) {
 
-        roomConfig.getConfig(req.params.user, function (err, docs) {
+
+    router.get('/models', function (req, res) {
+
+        RoomModel.getModels( function (err, docs) {
 
             res.json(docs);
         })
