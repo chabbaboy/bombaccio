@@ -7,10 +7,18 @@ module.exports = function () {
 
     router.get('/parameter/:parameter', function (req, res) {
 
-        RoomParameter.getParameter(req.params.parameter, function (err, docs) {
+        var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
 
-            res.json(docs);
-        })
+        if (checkForHexRegExp.test(req.params.parameter)) {
+
+            RoomParameter.getParameter(req.params.parameter, function (err, docs) {
+
+                res.json(docs);
+            })
+        }
+        else {
+            res.json();
+        }
     });
 
 
