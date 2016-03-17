@@ -33,6 +33,26 @@ RoomParameterSchema.static("getParameter", function (id, callback) {
         });
 });
 
+RoomParameterSchema.static("getParameters", function ( callback) {
+
+    var query = [
+        {
+            $lookup: {
+                from: "room_parameters_values",
+                localField: "_id",
+                foreignField: "pid",
+                as: "parameter_values"
+            }
+        }
+    ];
+
+    this
+        .aggregate(query)
+        .exec(function (err, docs) {
+
+            return callback(err, docs);
+        });
+});
 var RoomParameter = database.model('room_parameters', RoomParameterSchema, 'room_parameters');
 
 module.exports = RoomParameter;

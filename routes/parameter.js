@@ -21,6 +21,15 @@ module.exports = function () {
         }
     });
 
+    router.get('/parameters', function (req, res) {
+
+            RoomParameter.getParameters( function (err, docs) {
+
+                res.json(docs);
+            })
+
+    });
+
 
     return router;
 };
