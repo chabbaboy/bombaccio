@@ -13,10 +13,8 @@ var RoomParameterSchema = new Schema({
 
 RoomParameterSchema.static("getParameter", function (id, callback) {
 
-    var id_mongo = mongoose.Types.ObjectId(id);
-    var match_object = {"_id": id_mongo};
     var query = [
-        {$match: match_object},
+        {$match: {"_id": mongoose.Types.ObjectId(id)}},
         {
             $lookup: {
                 from: "room_parameters_values",

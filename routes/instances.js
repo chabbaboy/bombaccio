@@ -1,5 +1,5 @@
 var express = require('express');
-var RoomInstance = require('../models/RoomInstance');
+var RoomInstance = require('../models/roomInstance');
 
 module.exports = function () {
 
