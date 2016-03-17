@@ -11,42 +11,6 @@ var RoomInstanceSchema = new Schema({
     sync_date: {type: Date, required: false}
 });
 
-
-function getObjectFromModel(data) {
-
-    if (data.model) {
-
-        var lv_model = data.model;
-        var model_keys = Object.keys(data.model);
-
-        var lv_match = "{ $or: [";
-
-        model_keys.forEach(function (model_id) {
-
-            lv_match = lv_match + '{ "model_id": "' + model_id + '", ' + '"Plan": {$in:[';
-
-            for (i = 0; i < lv_model[model_id].length; i++) {
-                if ((i + 1) < lv_model[model_id].length) {
-                    lv_match = lv_match + '"' + lv_model[model_id][i] + '",';
-                }
-                else//zadnji elemenat niza bez zareza na kraju
-                {
-                    lv_match = lv_match + '"' + lv_model[model_id][i] + '"';
-                }
-            }
-            lv_match = lv_match + ']}},';
-
-        });
-
-        lv_match = lv_match + ']}';
-
-        return eval("(" + lv_match + ')');
-    }
-    else {
-        return null;
-    }
-};
-
 function transformModelObjectToMatch(data) {
 
     var or = [];
