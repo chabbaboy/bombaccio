@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/demo-sweeden');
+var config = require("../config");
+
+mongoose.connect(config.database);
 
 module.exports = mongoose;

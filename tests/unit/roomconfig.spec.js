@@ -1,4 +1,4 @@
-var ConfigModel = require("../models/roomConfig");
+var ConfigModel = require("../../models/roomConfig");
 var chai = require("chai");
 
 var expect = chai.expect;
