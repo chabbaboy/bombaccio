@@ -6,11 +6,7 @@ var objectIdValidator = function (id) {
 
     var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
 
-    if (checkForHexRegExp.test(id)) {
-        return true;
-    }
-
-    return false;
+    return checkForHexRegExp.test(id);
 };
 
 module.exports = function () {
@@ -54,8 +50,6 @@ module.exports = function () {
 
             res.json(docs);
         });
-
-
     });
 
 

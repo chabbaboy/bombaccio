@@ -15,7 +15,7 @@ RoomConfigSchema.static("getConfig", function (id, callback) {
         .findOne({user: id})
         .exec(function (err, docs) {
 
-            return callback(err, docs);
+            return callback(err, docs.toJSON());
         });
 });
 

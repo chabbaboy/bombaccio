@@ -1,15 +1,16 @@
 var express = require('express');
+var bodyParser = require('body-parser');
 var configRoutes = require('./routes/config');
 var instancesRoutes = require('./routes/instances');
 var modelRoutes = require('./routes/model');
 var modelParameters = require('./routes/parameter');
 
-
 var app = express();
-var bodyParser = require('body-parser');
+
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+
 app.use(bodyParser.json());
 
 app.use('/api', configRoutes());

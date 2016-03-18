@@ -1,5 +1,7 @@
 {
   "ambientDependencies": {
-    "express": "registry:dt/express#4.0.0+20160208031452"
+    "chai": "registry:dt/chai#3.4.0+20160317120654",
+    "express": "registry:dt/express#4.0.0+20160208031452",
+    "mocha": "registry:dt/mocha#2.2.5+20160317120654"
   }
 }

@@ -1,6 +1,6 @@
 var express = require('express');
 
-var RoomModel = require('../models/RoomModel');
+var RoomModel = require('../models/roomModel');
 
 module.exports = function () {
 
