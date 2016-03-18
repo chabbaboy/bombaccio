@@ -4,7 +4,13 @@ var instancesRoutes = require('./routes/instances');
 var modelRoutes = require('./routes/model');
 var modelParameters = require('./routes/parameter');
 
+
 var app = express();
+var bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(bodyParser.json());
 
 app.use('/api', configRoutes());
 app.use('/api', instancesRoutes());

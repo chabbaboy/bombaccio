@@ -2,15 +2,27 @@ var express = require('express');
 var RoomParameter = require('../models/roomParameter');
 var RoomParameterValues = require('../models/roomParameterValues');
 
+var objectIdValidator = function (id) {
+
+    var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
+
+    if (checkForHexRegExp.test(id)) {
+        return true;
+    }
+
+    return false;
+};
+
 module.exports = function () {
 
     var router = express.Router();
 
     router.get('/parameter/:parameter', function (req, res) {
 
-        var checkForHexRegExp = new RegExp("^[0-9a-fA-F]{24}$");
+        console.log(objectIdValidator(req.params.parameter));
 
-        if (!checkForHexRegExp.test(req.params.parameter)) {
+        if (!objectIdValidator(req.params.parameter)) {
+            console.log("paramatera nije dobar ");
             res.json();
         }
 
@@ -32,14 +44,9 @@ module.exports = function () {
 
     router.post('/parametervalues/:parameter/add', function (req, res) {
 
-
-        console.log(req.method);
-        res.json(null);
-        /*
-
-        RoomParameterValues.addparametervalue(req.params.parameter,function (err, docs) {
+        RoomParameterValues.addparametervalue(req.params.parameter,req.body,function (err, docs) {
             if (!err) {
-                console.log('User saved!');
+                console.log('Parameter saved!');
             }
             else {
                 console.log(err);
@@ -47,7 +54,7 @@ module.exports = function () {
 
             res.json(docs);
         });
-        */
+
 
     });
 
