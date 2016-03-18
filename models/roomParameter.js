@@ -53,6 +53,7 @@ RoomParameterSchema.static("getParameters", function ( callback) {
             return callback(err, docs);
         });
 });
+
 var RoomParameter = database.model('room_parameters', RoomParameterSchema, 'room_parameters');
 
 module.exports = RoomParameter;
