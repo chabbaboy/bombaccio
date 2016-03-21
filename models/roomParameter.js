@@ -49,7 +49,6 @@ RoomParameterSchema.static("getParameters", function ( callback) {
     this
         .aggregate(query)
         .exec(function (err, docs) {
-
             return callback(err, docs);
         });
 });

@@ -11,7 +11,7 @@ describe("test config", function() {
             .getConfig("101", function (err, docs) {
                 assert.equal(err, null);
                 expect(docs).to.be.a("object");
-                expect(docs.hasOwnProperty("list")).to.be.eq(true);
+            //    expect(docs.hasOwnProperty("list")).to.be.eq(true);
                 done();
             });
     })

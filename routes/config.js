@@ -9,10 +9,9 @@ module.exports = function () {
 
         roomConfig.getConfig(req.params.user, function (err, docs) {
 
-            res.json(docs);
+          return   res.json(docs);
         })
     });
-
 
     return router;
 };

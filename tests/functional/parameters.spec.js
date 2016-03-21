@@ -1,5 +1,6 @@
 var request = require("request");
 var chai = require("chai");
+var supertest = require("supertest");
 
 // https://glebbahmutov.com/blog/how-to-correctly-unit-test-express-server/
 // http://webapplog.com/tdd/

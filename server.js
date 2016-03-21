@@ -19,3 +19,5 @@ app.use('/api', modelRoutes());
 app.use('/api', modelParameters());
 
 app.listen(3000);
+
+module.exports = app;

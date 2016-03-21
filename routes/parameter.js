@@ -1,5 +1,6 @@
 var express = require('express');
 var RoomParameter = require('../models/roomParameter');
+
 var RoomParameterValues = require('../models/roomParameterValues');
 
 var objectIdValidator = function (id) {
@@ -15,16 +16,14 @@ module.exports = function () {
 
     router.get('/parameter/:parameter', function (req, res) {
 
-        console.log(objectIdValidator(req.params.parameter));
-
         if (!objectIdValidator(req.params.parameter)) {
-            console.log("paramatera nije dobar ");
-            res.json();
+
+            return res.json();
         }
 
         RoomParameter.getParameter(req.params.parameter, function (err, docs) {
 
-            res.json(docs);
+            return res.json(docs);
         })
 
     });
@@ -33,22 +32,43 @@ module.exports = function () {
 
         RoomParameter.getParameters(function (err, docs) {
 
-            res.json(docs);
+            return res.json(docs);
         })
 
     });
 
     router.post('/parametervalues/:parameter/add', function (req, res) {
 
-        RoomParameterValues.addparametervalue(req.params.parameter,req.body,function (err, docs) {
-            if (!err) {
-                console.log('Parameter saved!');
-            }
-            else {
-                console.log(err);
-            }
+        RoomParameterValues.addparametervalue(req.params.parameter, req.body, function (err, docs) {
 
-            res.json(docs);
+            if (err) {
+                res.json({'ERROR': err});
+            } else {
+                res.json({'SUCCESS': docs});
+            }
+        });
+    });
+
+    router.delete('/parametervalues/:parameter', function (req, res) {
+
+        RoomParameterValues.findById(req.params.parameter, function (err, parameter) {
+
+            if (parameter) {
+                if (err) {
+                    res.json({'ERROR': err});
+                } else {
+                    parameter.remove(function (err) {
+                        if (err) {
+                            res.json({'ERROR': err});
+                        } else {
+                            res.json({'REMOVED': parameter});
+                        }
+                    });
+                };
+
+            }else{
+               return  res.json(null);
+            }
         });
     });
 
