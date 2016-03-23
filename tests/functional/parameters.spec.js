@@ -1,31 +1,55 @@
-var request = require("request");
-var chai = require("chai");
-var supertest = require("supertest");
+var chai = require('chai');
+var chaiHttp = require('chai-http');
+var should = chai.should();
+var server = require('../../server');
 
-// https://glebbahmutov.com/blog/how-to-correctly-unit-test-express-server/
-// http://webapplog.com/tdd/
+chai.use(chaiHttp);
 
 var expect = chai.expect;
 
-describe("testing parameter routes", function() {
-    it("test parameters route", function(done) {
+describe('Functional Testing - Room Parameters', function() {
+    it("should list  all room parameters", function(done) {
 
-        var options = { method: 'GET',
-            url: 'http://localhost:3000/api/parameters',
-            headers:
-            { 'postman-token': '8b2e7215-aee7-9f09-0193-e7b37ef98fea',
-                'cache-control': 'no-cache' } };
+        chai.request(server)
+            .get('/api/parameters')
+            .end(function (err, res) {
+                res.should.have.status(200);
+                res.should.be.array;
+                done();
+            });
+    });
+    it("should list  room parameter for specific parameter id", function(done) {
 
-        request(options, function (error, response, body) {
-            if (error) throw new Error(error);
+        chai.request(server)
+            .get('/api/parameter/527b6ccfea1522ab3331aea1')
+            .end(function (err, res) {
+                res.should.have.status(200);
+                res.should.be.object;
 
-            body = JSON.parse(body);
+                done();
+            });
+    });
+    it("should return empty object for not existing parameter id", function(done) {
 
-            expect(body).to.be.an("array");
-            expect(body.length).to.be.greaterThan(5);
+        chai.request(server)
+            .get('/api/parameter/5436526f4ba22247377f71a1')
+            .end(function (err, res) {
+                res.should.have.status(200);
+                res.should.be.object;
 
-            done();
-        });
+                done();
+            });
+    });
+    it("should return empty object for wrong format parameter id", function(done) {
 
-    })
+        chai.request(server)
+            .get('/api/parameter/5436526f4ba22241')
+            .end(function (err, res) {
+                res.should.have.status(200);
+                res.should.be.object;
+
+                done();
+            });
+
+    });
 });

@@ -29,7 +29,14 @@ RoomParameterSchema.static("getParameter", function (id, callback) {
         .aggregate(query)
         .exec(function (err, docs) {
 
-            return callback(err, docs);
+            //aggregate function returns empty array if no results found
+            if (docs.length !=0) {
+                return callback(err, docs[0]);
+            }
+            else {
+                return callback(err);
+            }
+
         });
 });
 

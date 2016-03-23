@@ -4,8 +4,8 @@
   "description": "test aplikacija",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/test-server.js",
-    "cover": "istanbul cover _mocha -R tests/**/*.spec.js",
+    "test": "mocha tests/test-server-mockgoose.js",
+    "cover": "istanbul cover node_modules/.bin/_mocha -R spec tests/**/*.spec.js",
     "start": "nodemon server.js"
   },
   "author": "",
@@ -22,6 +22,7 @@
     "istanbul": "^0.4.2",
     "light-server": "^1.1.5",
     "mocha": "^2.4.5",
+    "mockgoose": "^5.4.0-rc.1",
     "nodemon": "^1.9.1",
     "request": "^2.69.0",
     "supertest": "^1.2.0",
